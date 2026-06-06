@@ -35,7 +35,7 @@ Non-Functional Requirements define *how* an AI system behaves, not just *what* i
 | Project | NFR Focus | Tech Stack |
 |---------|-----------|------------|
 | [HR Bias Audit](./hr-bias-audit) | Fairness, Explainability, Compliance | Python, Streamlit, pandas, scikit-learn, Plotly |
-| *(more coming)* | | |
+| [Enterprise Fairness Dashboard](./enterprise-fairness-dashboard) | Fairness Monitoring, Compliance, Remediation | FastAPI, PostgreSQL, React, Mantine UI, Recharts |
 
 ---
 
@@ -44,8 +44,12 @@ Non-Functional Requirements define *how* an AI system behaves, not just *what* i
 ```
 Ai_architect_portfolio_NFRs/
 ├── README.md
-└── hr-bias-audit/       # Bias detection & mitigation platform
-    ├── implementationplan.md
-    ├── src/
-    └── tests/
+├── hr-bias-audit/                    # Bias detection & mitigation platform
+│   ├── implementationplan.md
+│   ├── src/
+│   └── tests/
+└── enterprise-fairness-dashboard/   # Full-stack fairness monitoring & compliance app
+    ├── backend/
+    ├── frontend/
+    └── db/
 ```
