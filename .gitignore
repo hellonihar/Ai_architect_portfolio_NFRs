@@ -20,6 +20,10 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Node
+node_modules/
+dist/
+
 # User-uploaded resumes
 hr-bias-audit/src/data/*.pdf
 hr-bias-audit/src/data/*.docx
