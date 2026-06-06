@@ -13,6 +13,7 @@ Demonstrates a Responsible AI pipeline that audits hiring decisions across **gen
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [Usage Walkthrough](#usage-walkthrough)
+- [Demo Scenarios](#demo-scenarios)
 - [Data Models](#data-models)
 - [Bias Detection Methodology](#bias-detection-methodology)
 - [Remediation Strategies](#remediation-strategies)
@@ -228,6 +229,98 @@ Maps bias audit results to regulatory frameworks:
 - **EU AI Act (high-risk)** — conformity assessment, human oversight
 
 Each regulation shows a compliance status (✅ Compliant / ⚠️ Needs Review) based on current audit results. Remediation actions are listed for reference.
+
+---
+
+## Demo Scenarios
+
+Five guided walkthroughs that exercise every major feature of the application.
+
+### Scenario A: Bias Detection with Demo Data
+
+**Goal**: See bias detection in action without uploading files.
+
+| Step | Action | Expected Outcome |
+|------|--------|------------------|
+| 1 | Launch the app and click **"Load 250-profile demo (biased)"** in the sidebar | 250 synthetic profiles loaded; rerun triggers audit |
+| 2 | Go to the **📊 Bias Audit Report** tab | Summary metrics (applicants, pass rate, bias flags) visible |
+| 3 | Expand the **Gender**, **Ethnicity**, and **Age** expanders | Each shows DI ratio, p-value, severity badge, group breakdown table |
+| 4 | Observe the charts panel | Bar chart of pass rates by group; DI ratio chart with threshold lines at 0.8 and 1.0 |
+| 5 | Verify at least one dimension shows `severity: HIGH` or `MEDIUM` | The biased dataset (bias_scale=1.0) guarantees detectable disparity |
+
+**Expected result**: You see clear bias signals — female candidates and diverse-signal candidates have substantially lower pass rates than male candidates.
+
+---
+
+### Scenario B: Comparing Biased vs. Fair Datasets
+
+**Goal**: Understand how bias metrics change when the data is fair.
+
+| Step | Action | Expected Outcome |
+|------|--------|------------------|
+| 1 | Click **"Load 250-profile demo (biased)"** in the sidebar | Profiles load with bias_scale=1.0 |
+| 2 | Note the DI ratios under each dimension expander (e.g., Gender DI around 0.5–0.7) | Baseline biased state recorded |
+| 3 | Click **"Load 250-profile demo (fair)"** in the sidebar | Profiles reload with bias_scale=0.0 |
+| 4 | Re-check the same expanders | DI ratios should be much closer to 1.0 (parity); bias flags may disappear entirely |
+
+**Expected result**: The fair dataset shows no adverse impact (all DI ratios ≥ 0.8, all p-values ≥ 0.05). The contrast between biased/fair demonstrates how bias_scale controls disparity.
+
+---
+
+### Scenario C: What-If Simulation — Finding the Right Threshold
+
+**Goal**: Use the What-If Simulator to explore how threshold changes affect fairness.
+
+| Step | Action | Expected Outcome |
+|------|--------|------------------|
+| 1 | Load **"250-profile demo (biased)"** | Profiles loaded |
+| 2 | Navigate to **🔍 What-If Simulator** | Simulation controls appear |
+| 3 | Observe the **Pass/Fail Threshold** slider (default 0.5) | Results show current bias state |
+| 4 | Drag the threshold up to **0.7** | Pass rate drops; bias flags may change as fewer candidates pass |
+| 5 | Drag the threshold down to **0.3** | Pass rate rises; different groups may be affected asymmetrically |
+| 6 | Under **Equity Adjustments**, set **Female boost** to **+0.10** | DI ratio for gender dimension improves toward 1.0 |
+| 7 | Add **Under-30 boost** +0.08 and **Diverse signal boost** +0.10 | Age and ethnicity DI ratios improve concurrently |
+| 8 | Watch the charts update in real time with each slider move | Pass rate, DI ratio, and score distribution charts all re-render |
+
+**Expected result**: You can find a combination of threshold and equity boosts that eliminates bias flags (all DI ≥ 0.8) while maintaining an acceptable pass rate.
+
+---
+
+### Scenario D: Remediation Strategy Comparison
+
+**Goal**: Evaluate and compare mitigation strategies side by side.
+
+| Step | Action | Expected Outcome |
+|------|--------|------------------|
+| 1 | Load **"250-profile demo (biased)"** | Profiles loaded |
+| 2 | Navigate to **🛠️ Remediation Planner** | Strategy tabs and threshold slider appear |
+| 3 | Leave the threshold at **0.5** and observe the tabs | Four tabs: Baseline, Blind Screening, Weight Recalibration, Human-in-the-Loop |
+| 4 | Click the **Baseline** tab | Current state — bias flags present |
+| 5 | Click the **Blind Screening** tab | All demographic fields set to "unknown"; bias flags may persist because scores are unchanged |
+| 6 | Click the **Weight Recalibration** tab | Score boosts applied; DI ratios should improve; some bias flags may clear |
+| 7 | Click the **Human-in-the-Loop** tab | Borderline candidates now pass; pass rate increases |
+| 8 | Scroll to the **Side-by-Side Comparison** chart | Grouped bar chart shows DI ratio per dimension per strategy |
+| 9 | Read the **Recommended Action Plan** | Suggestions based on whether baseline bias was detected |
+
+**Expected result**: You can compare which strategy best mitigates bias for your dataset. Typically, weight recalibration + human review together achieve the best fairness outcomes.
+
+---
+
+### Scenario E: Full Audit Cycle with Compliance Check
+
+**Goal**: End-to-end workflow from data loading to regulatory compliance assessment.
+
+| Step | Action | Expected Outcome |
+|------|--------|------------------|
+| 1 | Load **"250-profile demo (biased)"** | Dataset ready |
+| 2 | Visit **📊 Bias Audit Report** and note all bias flags | Documented baseline |
+| 3 | Go to **🛠️ Remediation Planner**, select **Weight Recalibration**, note the improvement | Remediation strategy identified |
+| 4 | Go to **🔒 Compliance** tab | Regulatory checklist shows EEOC, GDPR, NYC Law 144, EU AI Act |
+| 5 | Observe compliance status for each regulation | If bias exists → ⚠️ Needs Review; if all clear → ✅ Compliant |
+| 6 | Review the **Remediation Actions** listed at the bottom | Action items cross-reference the strategies from the Remediation Planner |
+| 7 | Navigate to **📄 Resume View** for the consolidated group metrics table | All dimensions, groups, applicants, pass rates, and avg scores in one view |
+
+**Expected result**: A complete audit-to-compliance workflow. You can trace a finding (bias in Gender) through detection → quantification → remediation → regulatory mapping — demonstrating the full Responsible AI pipeline.
 
 ---
 
