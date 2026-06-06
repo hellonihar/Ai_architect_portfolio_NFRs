@@ -1,0 +1,17 @@
+[project]
+name = "trustguard-ai-backend"
+version = "0.1.0"
+description = "TrustGuard AI - Customer Trust & Reliability Platform"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "aiosqlite>=0.20.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.7.0",
+    "numpy>=2.0.0",
+]
+
+[dependency-groups]
+dev = []

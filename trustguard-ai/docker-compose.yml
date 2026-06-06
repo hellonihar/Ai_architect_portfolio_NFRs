@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - TRUSTGUARD_DATABASE_URL=sqlite+aiosqlite:///./trustguard.db
+      - TRUSTGUARD_CORS_ORIGINS=["http://localhost:5173","http://frontend:5173"]
+    volumes:
+      - trustguard_data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:8000
+
+volumes:
+  trustguard_data:

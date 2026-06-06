@@ -34,6 +34,7 @@ Non-Functional Requirements define *how* an AI system behaves, not just *what* i
 
 | Project | NFR Focus | Tech Stack |
 |---------|-----------|------------|
+| [TrustGuard AI](./trustguard-ai) | Reliability, High Availability, Resilience, Governance | FastAPI, SQLite, React, Mantine UI, Recharts |
 | [HR Bias Audit](./hr-bias-audit) | Fairness, Explainability, Compliance | Python, Streamlit, pandas, scikit-learn, Plotly |
 | [Enterprise Fairness Dashboard](./enterprise-fairness-dashboard) | Fairness Monitoring, Compliance, Remediation | FastAPI, PostgreSQL, React, Mantine UI, Recharts |
 
@@ -44,6 +45,10 @@ Non-Functional Requirements define *how* an AI system behaves, not just *what* i
 ```
 Ai_architect_portfolio_NFRs/
 ├── README.md
+├── trustguard-ai/                   # High-availability fraud detection reliability platform
+│   ├── backend/
+│   ├── frontend/
+│   └── scripts/
 ├── hr-bias-audit/                    # Bias detection & mitigation platform
 │   ├── implementationplan.md
 │   ├── src/
