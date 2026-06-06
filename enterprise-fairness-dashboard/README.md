@@ -100,6 +100,8 @@ backend/
 - Group breakdown charts by dimension (Gender, Region, Income)
 - Compliance badges and group count summary
 
+![Dashboard overview showing metric cards, demographic parity chart, and fairness index ring progress](screenshots/dashboard.png)
+
 ### Bias Alerts (`/alerts`)
 - Severity summary cards (Escalate, Investigate, Review counts)
 - Tab filter: All / Escalate / Investigate / Review
@@ -107,10 +109,14 @@ backend/
 - Resolve button to close open alerts
 - Toast notifications on resolve
 
+![Bias Alerts page with severity cards, tab filters, and alert table with resolve actions](screenshots/alerts.png)
+
 ### Compliance (`/compliance`)
 - Status summary cards (Passed, Failed, In Progress counts)
 - Badge table: badge name, status, description, last/next audit dates, retraining requirement
 - Retraining timeline section for badges requiring retraining
+
+![Compliance Status page showing badge table, audit dates, and retraining timeline](screenshots/compliance.png)
 
 ### Actions (`/actions`)
 - Type summary cards (Investigate, Escalate, Update Data/Reports counts)
@@ -118,6 +124,8 @@ backend/
 - Complete button for in-progress/pending actions
 - Create Action modal: type select, title, description, assigned_to
 - Toast notifications on create/complete
+
+![Actions page with summary cards, action table, and complete button](screenshots/actions.png)
 
 ### Frontend Project Structure
 ```
